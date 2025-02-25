@@ -52,13 +52,6 @@ const Products = () => {
     });
   };
 
-  const scrollToProducts = () => {
-    const productsSection = document.querySelector('.products-section');
-    if (productsSection) {
-      productsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <div className="content-wrapper">
       <div id="products" className="section products-section">
