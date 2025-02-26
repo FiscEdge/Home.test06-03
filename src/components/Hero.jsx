@@ -12,7 +12,7 @@ const Hero = () => {
           Simplify your financial operations with our comprehensive management solution.
         </p>
         <div className="hero-buttons">
-          <a href="https://fiscedge-dashboard.netlify.app" className="get-started-button">
+          <a href="https://dashboard-cyan-three-25.vercel.app/" className="get-started-button">
             Get Started Now
           </a>
           <Link to="/how-it-works" className="see-how-it-works">
