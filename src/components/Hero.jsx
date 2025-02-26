@@ -4,6 +4,10 @@ import mainImage from '../assets/immagine principale.png';
 import '../styles/globals.css';
 
 const Hero = () => {
+  const handleGetStarted = () => {
+    window.location.href = 'https://dashboard-cyan-three-25.vercel.app/';
+  };
+
   return (
     <section className="hero-section">
       <div className="hero-content">
@@ -12,9 +16,9 @@ const Hero = () => {
           Simplify your financial operations with our comprehensive management solution.
         </p>
         <div className="hero-buttons">
-          <a href="https://dashboard-cyan-three-25.vercel.app/" className="get-started-button">
+          <button onClick={handleGetStarted} className="get-started-button">
             Get Started Now
-          </a>
+          </button>
           <Link to="/how-it-works" className="see-how-it-works">
             See How It Works
           </Link>
