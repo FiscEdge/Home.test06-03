@@ -1,25 +1,41 @@
-import React, { useEffect } from 'react';
-import backgroundVideo from '../assets/Streamline Your Business.mp4';
-import mobileHeroImage from '../assets/mobile/hero-mobile.png';
+import React, { useEffect, useState } from 'react';
 import GetStartedButton from './GetStartedButton';
-import '../styles/globals.css';
 
 const Hero = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
   const handleGetStarted = () => {
-    window.location.href = 'https://dashboard-cyan-three-25.vercel.app/';
+    window.location.href = 'https://auth-psi-dun.vercel.app/auth/login';
   };
 
-  // Script di ottimizzazione per prevenire caricamento video su mobile
+  // Gestione responsive e ottimizzazione caricamento video
   useEffect(() => {
-    if (window.innerWidth < 768) {
-      const videoElements = document.querySelectorAll('video.desktop-only');
-      videoElements.forEach(video => {
+    // Funzione per controllare le dimensioni dello schermo
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Verifica dimensioni iniziali
+    checkScreenSize();
+    
+    // Aggiungi event listener per gestire il resize della finestra
+    window.addEventListener('resize', checkScreenSize);
+    
+    // Ottimizzazione video su mobile
+    if (isMobile) {
+      const desktopVideos = document.querySelectorAll('video.desktop-only');
+      desktopVideos.forEach(video => {
         video.pause();
         video.src = '';
         video.load();
       });
     }
-  }, []);
+
+    // Rimuovi event listener al cleanup
+    return () => {
+      window.removeEventListener('resize', checkScreenSize);
+    };
+  }, [isMobile]);
 
   return (
     <section className="hero-section">
@@ -31,15 +47,21 @@ const Hero = () => {
           muted 
           loop 
           playsInline
+          poster="/images/hero-poster.jpg"
         >
-          <source src={backgroundVideo} type="video/mp4" />
+          <source src="/videos/Streamline Your Business.mp4" type="video/mp4" />
         </video>
         
-        {/* Immagine per dispositivi mobili */}
-        <img 
-          src={mobileHeroImage} 
+        {/* Video per dispositivi mobili */}
+        <video 
+          src="/images/mobile/Streamline Your Business.mp4" 
           alt="Streamline Your Business" 
           className="hero-media mobile-only"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/images/mobile/hero-poster-mobile.jpg"
         />
         
         {/* Contenitore per il testo/contenuto sovrapposto */}

@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import '../styles/globals.css';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Here you would normally handle authentication
     // For now, we'll just redirect to the dashboard
-    window.location.href = 'https://app.fiscedge.com/dashboard';
+    router.push('https://auth-psi-dun.vercel.app/auth/dashboard');
   };
 
   return (

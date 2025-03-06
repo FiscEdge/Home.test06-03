@@ -1,5 +1,4 @@
 import React from 'react';
-import presentationVideo from '../assets/FiscEdge Presentazione.mp4';
 
 const About = () => {
   return (
@@ -15,7 +14,7 @@ const About = () => {
             muted
             loop
           >
-            <source src={presentationVideo} type="video/mp4" />
+            <source src="/videos/FiscEdge Presentazione.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>

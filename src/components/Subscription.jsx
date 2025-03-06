@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const Subscription = () => {
   const plans = [
@@ -56,9 +56,11 @@ const Subscription = () => {
               </ul>
             </div>
             
-            <Link to="/auth" className="select-plan-button">
-              Select Plan
-            </Link>
+            <div className="plan-cta">
+              <Link href="https://auth-psi-dun.vercel.app/auth/login" className="plan-button">
+                Get Started
+              </Link>
+            </div>
           </div>
         ))}
       </div>
