@@ -1,14 +1,18 @@
-// Example API endpoint for user management
-import db from '../../config/db';
+// Example API endpoint for user management - mocked for deployment
+// import db from '../../config/db';
 
 export default async function handler(req, res) {
   switch(req.method) {
     case 'GET':
       try {
-        const result = await db.query('SELECT id, name, email FROM users');
-        return res.status(200).json(result.rows);
+        // Mock response for deployment
+        const mockUsers = [
+          { id: 1, name: 'Demo User', email: 'demo@example.com' },
+          { id: 2, name: 'Test User', email: 'test@example.com' }
+        ];
+        return res.status(200).json(mockUsers);
       } catch (error) {
-        console.error('Database error:', error);
+        console.error('API error:', error);
         return res.status(500).json({ error: 'Failed to fetch users' });
       }
       
@@ -21,14 +25,16 @@ export default async function handler(req, res) {
           return res.status(400).json({ error: 'Missing required fields' });
         }
         
-        const result = await db.query(
-          'INSERT INTO users (name, email, password_hash) VALUES ($1, $2, $3) RETURNING id, name, email',
-          [name, email, password] // In production, password should be hashed
-        );
+        // Mock response for successful creation
+        const mockCreatedUser = {
+          id: Math.floor(Math.random() * 1000),
+          name,
+          email
+        };
         
-        return res.status(201).json(result.rows[0]);
+        return res.status(201).json(mockCreatedUser);
       } catch (error) {
-        console.error('Database error:', error);
+        console.error('API error:', error);
         return res.status(500).json({ error: 'Failed to create user' });
       }
       
